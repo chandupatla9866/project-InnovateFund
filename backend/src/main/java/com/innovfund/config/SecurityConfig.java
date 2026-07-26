@@ -119,6 +119,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/api/startups/*/reports/summary").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/events").permitAll()
                         .requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/swagger-ui.html").permitAll()
+                        .requestMatchers("/actuator/health").permitAll()
                         .requestMatchers("/error").permitAll()
                         .requestMatchers("/oauth2/**", "/login/oauth2/**", "/api/auth/oauth2/**").permitAll()
                         .requestMatchers("/ws/**").permitAll()
