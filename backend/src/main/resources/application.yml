@@ -1,0 +1,54 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: innovatefund-backend
+  datasource:
+    url: jdbc:postgresql://localhost:5432/innovatefund
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:1234}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    baseline-version: 1
+    locations: classpath:db/migration
+  servlet:
+    multipart:
+      max-file-size: 25MB
+      max-request-size: 25MB
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${MAIL_USERNAME:}
+    password: ${MAIL_PASSWORD:}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+app:
+  jwt:
+    secret: ${JWT_SECRET:innovatefund-dev-secret-key-change-me-please-min-32-bytes-long}
+    expiration-ms: 86400000
+  ai:
+    provider: ${AI_PROVIDER:mock}
+  cors:
+    allowed-origins: http://localhost:5190
+  oauth2:
+    redirect-uri: ${OAUTH2_REDIRECT_URI:http://localhost:5190/oauth2/redirect}
+  frontend-url: ${FRONTEND_URL:http://localhost:5190}
+  mail:
+    from: ${MAIL_USERNAME:noreply@innovatefund.local}
+    enabled: ${MAIL_ENABLED:true}
